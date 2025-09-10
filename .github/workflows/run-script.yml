@@ -30,4 +30,5 @@ jobs:
         run: python wellness_reminder.py ${{ github.event.schedule || 'water' }}
         env:
           MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
-          FRIEND_WEBHOOK: ${{ secrets.FRIEND_WEBHOOK }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}

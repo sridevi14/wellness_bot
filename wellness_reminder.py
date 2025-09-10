@@ -3,7 +3,9 @@ import requests
 import sys
 
 MY_WEBHOOK = os.getenv("MY_WEBHOOK")
-FRIEND_WEBHOOK = os.getenv("FRIEND_WEBHOOK")
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+
 
 def send_message(msg,WEBHOOK_URL):
     if not WEBHOOK_URL:
@@ -11,6 +13,14 @@ def send_message(msg,WEBHOOK_URL):
         return
     requests.post(WEBHOOK_URL, json={"text": msg})
 
+
+def send_telegram_message(msg, token, chat_id):
+    if not token or not chat_id:
+        print("No Telegram credentials configured")
+        return
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    payload = {"chat_id": chat_id, "text": msg}
+    requests.post(url, json=payload)
 if __name__ == "__main__":
     task = sys.argv[1] if len(sys.argv) > 1 else "water"
 
@@ -24,4 +34,4 @@ if __name__ == "__main__":
 
     send_message(msg,MY_WEBHOOK)
     if task == "water":
-        send_message(msg, FRIEND_WEBHOOK)
+        send_telegram_message(msg, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID)
