@@ -2,9 +2,10 @@ import os
 import requests
 import sys
 
-WEBHOOK_URL = os.getenv("GCHAT_WEBHOOK")
+MY_WEBHOOK = os.getenv("MY_WEBHOOK")
+FRIEND_WEBHOOK = os.getenv("FRIEND_WEBHOOK")
 
-def send_message(msg):
+def send_message(msg,WEBHOOK_URL):
     if not WEBHOOK_URL:
         print("No webhook configured")
         return
@@ -19,5 +20,8 @@ if __name__ == "__main__":
         "walk": "🚶 Walking break! Take a 5 min walk.",
         "lunch": "🍴 Lunch break! Relax between 1–2 PM.",
     }
+    msg = messages.get(task, "🔔 Reminder!")
 
-    send_message(messages.get(task, "🔔 Reminder!"))
+    send_message(msg,MY_WEBHOOK)
+    if task == "water":
+        send_message(msg, FRIEND_WEBHOOK)

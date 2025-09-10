@@ -29,4 +29,5 @@ jobs:
       - name: Run reminder
         run: python wellness_reminder.py ${{ github.event.schedule || 'water' }}
         env:
-          GCHAT_WEBHOOK: ${{ secrets.GCHAT_WEBHOOK }}
+          MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
+          FRIEND_WEBHOOK: ${{ secrets.FRIEND_WEBHOOK }}
