@@ -33,5 +33,5 @@ if __name__ == "__main__":
     msg = messages.get(task, "🔔 Reminder!")
 
     send_message(msg,MY_WEBHOOK)
-    if task == "water":
-        send_telegram_message(msg, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID)
+    # if task == "water":
+        # send_telegram_message(msg, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID)
