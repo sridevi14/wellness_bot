@@ -34,32 +34,32 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-  eye_reminder:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0,30 5-12 * * 1-6'
-    steps:
-      - run: python wellness_reminder.py eye
-        env:
-          MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  # eye_reminder:
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0,30 5-12 * * 1-6'
+  #   steps:
+  #     - run: python wellness_reminder.py eye
+  #       env:
+  #         MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
+  #         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  #         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-  walk_reminder:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '30 7,10,13 * * 1-6'
-    steps:
-      - run: python wellness_reminder.py walk
-        env:
-          MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  # walk_reminder:
+  #   runs-on: ubuntu-latest
+  #   if: github.event_name == 'workflow_dispatch' || github.event.schedule == '30 7,10,13 * * 1-6'
+  #   steps:
+  #     - run: python wellness_reminder.py walk
+  #       env:
+  #         MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
+  #         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  #         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-  lunch_reminder:
-    runs-on: ubuntu-latest
-    if: github.event.schedule == '30 7 * * 1-6'
-    steps:
-      - run: python wellness_reminder.py lunch
-        env:
-          MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  # lunch_reminder:
+  #   runs-on: ubuntu-latest
+  #   if: github.event.schedule == '30 7 * * 1-6'
+  #   steps:
+  #     - run: python wellness_reminder.py lunch
+  #       env:
+  #         MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
+  #         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  #         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
