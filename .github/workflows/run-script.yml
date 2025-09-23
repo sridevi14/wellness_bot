@@ -19,10 +19,16 @@ on:
 
 jobs:
   water_reminder:
-    runs-on: ubuntu-latest
     if: github.event_name == 'workflow_dispatch' ||(github.event.schedule == '0 5-12/1 * * 1-6' || github.event.schedule == '0 13 * * 1-6')
+    runs-on: ubuntu-latest
     steps:
-      - run: python wellness_reminder.py water
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - run: pip install -r requirements.txt || echo "No requirements.txt found"
+      - name: Run water reminder script
+        run: python wellness_reminder.py water
         env:
           MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
