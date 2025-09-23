@@ -1,6 +1,9 @@
 import os
 import requests
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
 
 MY_WEBHOOK = os.getenv("MY_WEBHOOK")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
