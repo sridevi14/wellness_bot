@@ -6,14 +6,14 @@ on:
     - cron: "0 5-12/1 * * 1-6"
     - cron: "0 13 * * 1-6"
 
-    # Eye break (every 30 min)
-    - cron: "0,30 5-12 * * 1-6"
+    # # Eye break (every 30 min)
+    # - cron: "0,30 5-12 * * 1-6"
 
-    # Walking break
-    - cron: "30 7,10,13 * * 1-6"
+    # # Walking break
+    # - cron: "30 7,10,13 * * 1-6"
 
-    # Lunch notification
-    - cron: "30 7 * * 1-6"
+    # # Lunch notification
+    # - cron: "30 7 * * 1-6"
 
   workflow_dispatch:
 
@@ -34,35 +34,35 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-  eye_reminder:
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0,30 5-12 * * 1-6'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      - run: pip install -r requirements.txt || echo "No requirements.txt found"
-      - name: Run eye reminder script
-        run: python wellness_reminder.py eye
-        env:
-          MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  # eye_reminder:
+  #   if: github.event_name == 'workflow_dispatch' || github.event.schedule == '0,30 5-12 * * 1-6'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-python@v4
+  #       with:
+  #         python-version: "3.10"
+  #     - run: pip install -r requirements.txt || echo "No requirements.txt found"
+  #     - name: Run eye reminder script
+  #       run: python wellness_reminder.py eye
+  #       env:
+  #         MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
+  #         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  #         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
-  walk_reminder:
-    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '30 7,10,13 * * 1-6'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      - run: pip install -r requirements.txt || echo "No requirements.txt found"
-      - name: Run walk reminder script
-        run: python wellness_reminder.py walk
-        env:
-          MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+  # walk_reminder:
+  #   if: github.event_name == 'workflow_dispatch' || github.event.schedule == '30 7,10,13 * * 1-6'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/setup-python@v4
+  #       with:
+  #         python-version: "3.10"
+  #     - run: pip install -r requirements.txt || echo "No requirements.txt found"
+  #     - name: Run walk reminder script
+  #       run: python wellness_reminder.py walk
+  #       env:
+  #         MY_WEBHOOK: ${{ secrets.MY_WEBHOOK }}
+  #         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  #         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
 
